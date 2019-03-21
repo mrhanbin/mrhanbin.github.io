@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>&lt;a&gt;标签中href属性动作和onclick事件的区别以及传递this参数对象 | Aaron&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="a标签中href属性动作和onclick事件的区别以及传递this参数对象">
+<meta name="keywords" content="javascript,html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&lt;a&gt;标签中href属性动作和onclick事件的区别以及传递this参数对象">
+<meta property="og:url" content="http://soos.xin/2016/08/25/a标签中href属性动作和onclick事件的区别以及传递this参数对象/index.html">
+<meta property="og:site_name" content="Aaron&#39;s Blog">
+<meta property="og:description" content="a标签中href属性动作和onclick事件的区别以及传递this参数对象">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-09-04T09:58:59.768Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="&lt;a&gt;标签中href属性动作和onclick事件的区别以及传递this参数对象">
+<meta name="twitter:description" content="a标签中href属性动作和onclick事件的区别以及传递this参数对象">
+  
+    <link rel="alternative" href="/atom.xml" title="Aaron&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">Aaron</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">每一秒 我们都有机会 让下一秒 变得更好</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/about">留言打卡</a></li>
+                        
+                            <li><a href="/FrontEndGuide">前端导航</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=kaOooaeopqSh0eDgv-L_-A" title="mail">mail</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="http://zhihu.com/people/hanbinsvip" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://weibo.com/aaronindex" title="weibo">weibo</a>
+                            
+                                <a class="fl QQ" target="_blank" href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=29069750&website=www.soos.xin" title="QQ">QQ</a>
+                            
+                                <a class="fl wechat" target="_blank" href="https://zhuanlan.zhihu.com/p/29545000" title="wechat">wechat</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JQuery/" style="font-size: 10px;">JQuery</a> <a href="/tags/JS/" style="font-size: 10px;">JS</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/WebSocket/" style="font-size: 12.5px;">WebSocket</a> <a href="/tags/WebStorage/" style="font-size: 10px;">WebStorage</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/css3/" style="font-size: 10px;">css3</a> <a href="/tags/gulp/" style="font-size: 12.5px;">gulp</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/html5/" style="font-size: 12.5px;">html5</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/js、css混淆/" style="font-size: 10px;">js、css混淆</a> <a href="/tags/js、css版本号/" style="font-size: 10px;">js、css版本号</a> <a href="/tags/nodejs/" style="font-size: 12.5px;">nodejs</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/web前端/" style="font-size: 12.5px;">web前端</a> <a href="/tags/兼容性/" style="font-size: 10px;">兼容性</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/建站/" style="font-size: 10px;">建站</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://bio.soos.xin/">我的简历</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">热衷于新技术的学习和研究；秉承化繁为简理念，对互联网发展趋势高度关注，积极配合团队开发。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">Aaron</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">Aaron</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">每一秒 我们都有机会 让下一秒 变得更好</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/about">留言打卡</a></li>
+                
+                    <li><a href="/FrontEndGuide">前端导航</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=kaOooaeopqSh0eDgv-L_-A" title="mail">mail</a>
+                    
+                        <a class="zhihu" target="_blank" href="http://zhihu.com/people/hanbinsvip" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/aaronindex" title="weibo">weibo</a>
+                    
+                        <a class="QQ" target="_blank" href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=29069750&website=www.soos.xin" title="QQ">QQ</a>
+                    
+                        <a class="wechat" target="_blank" href="https://zhuanlan.zhihu.com/p/29545000" title="wechat">wechat</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-a标签中href属性动作和onclick事件的区别以及传递this参数对象" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/25/a标签中href属性动作和onclick事件的区别以及传递this参数对象/" class="article-date">
+      <time datetime="2016-08-25T03:29:00.000Z" itemprop="datePublished">2016-08-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      &lt;a&gt;标签中href属性动作和onclick事件的区别以及传递this参数对象
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/web前端/">web前端</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>我以前在写<code>&lt;a&gt;</code>的 href 和 onclick 一直很随意，后来出过几次问题，以后才开始重视这个问题：</p>
+</blockquote>
+<p>首先摘录一篇文档：</p>
+<p>在JavaScript中void是一个操作符，该操作符指定要计算一个表达式，但是不返回值。</p>
+<p>void 操作符用法格式如下：<br><code>1. javascript:void(expression)</code><br><code>2. javascript:void expression</code></p>
+<p>expression 是一个要计算的 Javascript 标准的表达式。表达式外侧的圆括号是可选的，但是写上去是一个好习惯。 (实现版本 Navigator 3.0)</p>
+<p>你可以使用 void 操作符指定超链接。表达式会被计算，但是不会把当前文档处装入任何内容。</p>
+<p>下面的代码创建了一个超链接，当用户点击以后不会发生任何事。当用点击户链接时，void(0) 计算为 0，但 Javascript 上没有任何效果。</p>
+<p><code>&lt;a href=&quot;javascript:void(0);&quot;&gt;单此处什么也不会发生&lt;/a&gt;</code></p>
+<p>下面的代码创建了一个超级链接，用户单时会提交表单。</p>
+<p><code>&lt;a href=&quot;javascript:void(document.form.submit());&quot;&gt;单此处提交表单&lt;/a&gt;</code></p>
+<p>下面代码则执行了subgo() 函数，</p>
+<p><code>&lt;a href=&quot;javascript:void(0);&quot; onclick=&quot;subgo()&quot;&gt;点我&lt;/a&gt;</code></p>
+<p>在这里，javascript:void(0),没起实质上的作用，它仅仅是一个死链接，执行的函数是subgo()。</p>
+<p><code>&lt;a href=&quot;#&quot; onclick=&quot;subgo()&quot;&gt;点我&lt;/a&gt;</code></p>
+<p>与</p>
+<p><code>&lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;subgo()&quot;&gt;点我&lt;/a&gt;</code></p>
+<p>的区别。</p>
+<p>实际上 # 包含了一个位置信息，默认的锚是#top ，也就是网页的上端 ，而 javascript:void(0) 仅仅表示一个死链接，没有任何信息。所以调用脚本的时候最好用void(0)。</p>
+<p>href一般是指向一个URL地址，也可以调用javascript ，如 href=”javascript:xxx();”,文档中推荐这样写：</p>
+<p><code>&lt;a href=&quot;javascript:void(0);&quot; onclick=&quot;xxx();&quot;&gt;yyy&lt;/a&gt;</code>，但是这种方法在复杂环境有时会产生奇怪的问题，尽量不要用javascript:协议做为a的href属性，这样不仅会导致不必要的触发window.onbeforeunload事件，在IE里面更会使gif动画图片停止播放。</p>
+<p>我们知道链接的 onclick 事件被先执行，其次是 href 属性下的动作（页面跳转，或 javascript 伪链接），如果不想执行href 属性下的动作执行，onclick 需要要返回 false ，一般是这样写onclick=”xxx();return false;”</p>
+<ul>
+<li>链接的 onclick 事件被先执行，其次是 href 属性下的动作（页面跳转，或 javascript 伪链接）； </li>
+<li>假设链接中同时存在 href 与 onclick，如果想让 href 属性下的动作不执行，onclick 必须得到一个 false 的返回值。</li>
+<li>如果页面过长有滚动条，且希望通过链接的 onclick 事件执行操作。应将它的 href 属性设为 javascript:void(0);，而不要是 #，这可以防止不必要的页面跳动； </li>
+<li>如果在链接的 href 属性中调用一个有返回值的函数，当前页面的内容将被此函数的返回值代替；<br>在按住Shift键的情况下会有所区别。<br>今天我遇到的问题，在IE6.0里以href的形式访问不到parentNode。<br>尽量不要用javascript:协议做为a的href属性，这样不仅会导致不必要的触发window.onbeforeunload事件，在IE里面更会使gif动画图片停止播放 。</li>
+</ul>
+<p>下面是网友遇到的： </p>
+<p>如果不设置 href属性在IE6下面会不响应hover。双击后会选中标签的父容器而非这个一a标签（IE下都存在这一问题）。<br><code>&lt;a href=&quot;javascirpt:fn(this)&quot;&gt; &lt;a onclick=&quot;fn(this)&quot;&gt;</code> 假定我们有个fn方法，需要取到这个元素，第一个方法传入的this是空值。 </p>
+<p>所以，比较推荐的写法是<a href="javascript:void(0)" onclick="fn(this)" target="_blank" rel="external"> </a></p>
+<p>至于其他楼说的【IE8中，如：”javascript:;”,”javascript:void(0)”,”javascript:void(null)”都被拒绝】因为没有安装IE8，不敢妄下结论。<br>如果在实际应用中确实是要用到<code>&lt;a&gt;</code>标签来响应onclick事件的，<br>那么就建议使用下面三种方法<br><code>1.&lt;a href=&quot;javascript:void(0);&quot; onclick=&quot;doSomething()&quot;&gt;test&lt;/a&gt;</code><br><code>2.&lt;a href=&quot;http://blog.163.com/wb_zhaoyuwei/blog/&quot; onclick=&quot;doSomething();return false&quot;&gt;test&lt;/a&gt;</code><br><code>3.&lt;a href=&quot;http://blog.163.com/wb_zhaoyuwei/blog/&quot; onclick=&quot;doSomething();event.returnValue=false&quot;&gt;test&lt;/a&gt;</code><br>超级链接<code>&lt;a&gt;</code>标签代表一个链接点，是英文anchor（锚点）的简写。它的作用是把当前位置的文本或图片连接到其他的页面、文本或图像，这已是众所周知了，但关于它的语法结构可能有点鲜为人知，而要用活它则必须了解其语法结构。<code>&lt;a&gt;</code>标签的基本语法结构是： </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> </span></div><div class="line"><span class="attr">class</span>=<span class="string">type</span> </div><div class="line"><span class="attr">id</span>＝<span class="attr">value</span> </div><div class="line"><span class="attr">href</span>＝<span class="attr">reference</span> </div><div class="line"><span class="attr">name</span>＝<span class="attr">value</span> </div><div class="line"><span class="attr">rel</span>=<span class="string">same|next|parent|previous</span> </div><div class="line"><span class="attr">rev</span>＝<span class="attr">value</span> </div><div class="line"><span class="attr">target</span>＝<span class="attr">window</span> </div><div class="line"><span class="attr">style</span>＝<span class="attr">value</span> </div><div class="line"><span class="attr">title</span>=<span class="string">title</span> </div><div class="line"><span class="attr">onclick</span>＝<span class="attr">function</span> </div><div class="line"><span class="attr">onmouseout</span>＝<span class="attr">function</span> </div><div class="line"><span class="attr">onMouseOver</span>=<span class="string">function</span>&gt;连接<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>从标签的语法结构可以看出，在设定一个超级链接时有很多参数可供选择，以实现不同的链接效果，这有点出乎意料吧？！ </p>
+<p>其中class和id选项：用于设定链接点所属的类型和分配的ID号，通常不加以设定。</p>
+<p>最常用的两个参数是href和name。其中href是hypertext reference的缩略词，用于设定链接地址。链接地址必须为url地址，如果没有给出具体路径，则默认路径和当前页的路径相同。 链接到的文件也分为几种情况：如果为HTML文件，则在当前浏览器中直接打开；如果为可执行文件（.exe文件），则直接执行或下载，我们提供下载的文件就是用它的这种特性做的；如果为文本文件如word格式的文件，则在浏览器中打开此文件，并可以进行编辑加工。 </p>
+<ul>
+<li>rel：表示设定链接的关系：rel=same表示待链接的文件与此文件相同，rel=next表示待链接的文件为下一页，rel＝parent表示本文件为待链接文件的父文件，rel=previous则表示待链接的文件为上一页。 </li>
+<li>rev：则用于设定反向链接。</li>
+<li>target：是在采用帧窗口的情况下设定链接到哪一个窗口，还有target=”_bank”是表示新开一窗口打开网页。</li>
+<li>title：用于设定链接点被选到时显示的标题。</li>
+<li>onclick：对应于一个事件，当链接点被点击后将触发这个事件，执行对应的子程序。</li>
+<li>onmouseover：与onclick类似，对应的事件在鼠标移到链接点上时被触发。</li>
+<li>onmouseout：对应的事件在鼠标移出镇接点后被触发。</li>
+</ul>
+<p>举几个例子：<br><code>&lt;a href=&quot;http://blog.163.com/wb_zhaoyuwei/blog/index.htm&quot;&gt;回到主页&lt;/a&gt;</code><br><code>&lt;a href=&quot;http://blog.163.com/wb_zhaoyuwei/blog/sound.wav&quot;&gt;播放语音文件&lt;/a&gt;</code><br><code>&lt;a href=&quot;http://blog.163.com/wb_zhaoyuwei/blog/javascipt.open()&quot;&gt;执行对应的程序&lt;/a&gt;</code><br><code>&lt;a herf=&quot;document.doc&quot;&gt;打开对应的文档进行加工&lt;/a&gt;</code></p>
+<p>应用技巧<br>1、提供下载文件<br>　　有不少网友来信问，提供下载的效果怎么做。实际上仍然是做一个超级链接，不过供下载的文件必须上传到网站上。例：有一个“网页技巧”的文件包供下载，文件名是“homepagejq.zip”且已上传到网站了，则这个链接的代码可以这样写：<code>&lt;a href=&quot;http://blog.163.com/wb_zhaoyuwei/blog/homepagejq.zip&quot;&gt;点击这里下载“网页技巧”文件包&lt;/a&gt;</code>。 </p>
+<p>2、在新窗口中打开链接的网页<br>　　设定“target”的值为“_blank”。例：新开窗口打开网页“aboutme.htm”。产生该效果的代码是：<code>&lt;a href=&quot;http://blog.163.com/wb_zhaoyuwei/blog/aboutme.htm&quot; target=&quot;_blank&quot;&gt;关于我......&lt;/a&gt;</code>。 </p>
+<p>3、鼠标移到链接，显示一行说明文字<br>　　设定“title”参数值，即可获得这种效果。例：当鼠标移到“黄山村夫”这个链接上时，显示说明“这是一个介绍网页制作技巧的专业网站”。这个链接的代码是这样的：<code>&lt;a href=&quot;http://blog.163.com/wb_zhaoyuwei/blog/hscf.htm&quot; title=&quot;这是一个介绍网页制作技巧的专业网站&quot;&gt;黄山村夫&lt;/a&gt;</code>。 </p>
+<p>4、鼠标移到一个链接上弹出一个窗口<br>　　这是设定onmouseover参数获得的效果。例：当鼠标移到一个链接上，弹出一个窗口并在窗口中显示“鼠标悬停效果演示！”。这个链接的代码是这样的：<code>&lt;a href=&quot;http://blog.163.com/wb_zhaoyuwei/blog/其它网页.htm&quot; onmouseover=&quot;alert(&#39;鼠标悬停效果演示！&#39;)&quot;&gt;链接&lt;/a&gt;</code>。用类似的方法可以制作当鼠标按下后弹出提出示窗口、当鼠标离开时弹出提示窗口的效果。 </p>
+<p>5、链接到本页的指定内容 (可以用于tab页的跳转）<br>　　要实现链接到本页的某一部分内容上（也就是“文件内跳转”），必须用参数name指定链接点的名称。选定一块文本，可以用name参数为其命名，以备 链接所用。所谓同一个文件内的跳转是指当读者在阅读一个很长的文件的时候，若只对某部分的内容感兴趣，可以采用跳跃式的阅读方式。其基本格式是： </p>
+<p><code>&lt;a href＝&quot;＃链接点名称&quot;&gt;第二部分&lt;/a&gt;</code>第一部分内容……<br>…………………………………….<br><code>&lt;a name＝&quot;链接点名称&quot;&gt;&lt;/a&gt;</code>第二部分实际内容……<br>…………………………………….<br>　　这样当你点击“第二部分”这个超级链接后，就会自动转移到“第二部分实际内容”这个地方来。“name”参数所定义的链接点名称可以随意取，但链接的“href”参数中的链接点名称必须与其一致，不要忘记在前面加上“#”。 </p>
+<p>6、链接到其它页面的指定内容位置<br>　　方法与上例类似，但在“href”参数中的链接点名称前要加上网页的文件名。例：有两个网页page1.htm和page2.htm ，每页均有两部分内容，现要在page1.htm中制作一个超级链接，按下该链接后将转到page2.htm的第二部分内容上。那么我们可以这样做，首先在page2.htm第二部分内容开始的地方写上这样一句代码：<code>&lt;a name=&quot;链接点名称&quot;&gt;&lt;/a&gt;</code>；在page1.htm中写上这样一个链接代码：<code>&lt;a href=&quot;http://blog.163.com/wb_zhaoyuwei/blog/page2.htm#链接点名称&quot;&gt;page2 的第二部分内容&lt;/a&gt;</code>。 </p>
+<p>7、链接到E_mail<br>　　点击一个超级链接后，将启动客户机上的电子邮件管理软件给你写信。例这行代码：<code>&lt;a href=&quot;mailto:web@webjx.com&quot;&gt;请给我写信&lt;/a&gt;</code>。一旦你点击了“请给我写信”这个链接，将自动启动电子邮件管理软件（如OE）的写信功能，并已把邮件地址加在了收信人的地址栏里了。 </p>
+<p>　　链接不仅可以以文本作载体，也可以以图象作载体，而且可以以图片的某一部分作载体，且都能实现上述这些效果，方法也相同，所不同只是载体，也就是链接的两对方括号中间的那部分，所以不再另举例了。</p>
+<p>例子：</p>
+<p>用CheckBox控件时想实现在每个checkbox后再加链接的功能，点链接实现一些功能之外，还要把checkbox选中。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"chk"</span> <span class="attr">id</span>=<span class="string">"chk"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"chk"</span>&gt;</span>选中它</div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">onclick</span>=<span class="string">"this.parentNode.click();"</span> <span class="attr">href</span>=<span class="string">"javascript:void(0);"</span>&gt;</span>[label中的链接]<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>最后用parentNode来实现的。<br><code>&lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;defineField(this);return false&quot;&gt;ClickToDefine&lt;/a&gt;</code></p>
+<p>————————————-在onclick中传递this参数，将当前a标签对象传递给方法————————————</p>
+<p>想传递当前对象给一个函数，于是就将这个URL写成”javascript:shoControlSidebar(this)”，可是结果发现这并不可行，传递过去的参数是一个对象，但是却得不到任何其他信息。我想得到的是innerText，而这个this并非指向它所在的a标签。 </p>
+<p>这是<code>&lt;a href=&quot;javascript:shoControlSidebar(this);&quot;&gt;</code>和<code>&lt;a href=&quot;javascript:void(0);&quot; onclick=&quot;shoControlSidebar(this)&quot;&gt;</code>不同的地方。 </p>
+<p>当使用 onclick=”shoControlSidebar(this)” 的时候，解释器会给他包装一个匿名函数，变成了：<br>代码如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a.onclick = <span class="function"><span class="keyword">function</span> <span class="title">anonymous</span>(<span class="params"></span>) </span>&#123; </div><div class="line">    shoControlSidebar(<span class="keyword">this</span>); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个this指的就是a这个对象，而使用href的方式时，由于是一个地址，这个this就无处可指了。<br>代码如下:<br><code>&lt;a href=&quot;javascript:void(0);&quot; onclick=&quot;test(this);&quot;&gt;A标签测试&lt;/a&gt;</code><br>代码如下:<br>想获取A 中的innerHTML<br>如果href=”test(this);” 不但获取不到值，而且程序将退出，href引向不对。 </p>
+<p>代码如下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//js的方法中参数不能再写成test(this)了，因为this有特定的含义，所以写成test(obj)才正确  </span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">obj</span>)</span>&#123;  </div><div class="line">    <span class="comment">//obj就是onclick="test(this)"中this传过来的，this指的就是页面中点击的a标签对象，  </span></div><div class="line">    <span class="comment">//然后通过HTML的DOM属性parentNode获取a标签的父节点，不断往上获取到最外层tr的父节点，然后进行下一步的其他事件操作了。  </span></div><div class="line">    <span class="keyword">var</span> node = obj.parentNode.parentNode.parentNode.parentNode;  </div><div class="line">    $(node).find(<span class="string">"tr[class='parents']"</span>).find(<span class="string">"input[type='checkbox']"</span>).prop(<span class="string">"checked"</span>,<span class="string">'true'</span>);  </div><div class="line">    node.parentNode.removeChild(node);  </div><div class="line">    alert(obj);   </div><div class="line">    <span class="comment">//js   </span></div><div class="line">    alert(obj.innerHTML);   </div><div class="line">    <span class="comment">//jquery   </span></div><div class="line">    alert($(obj).html());   </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()" title="关闭">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫">
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝"></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信"></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+<nav id="article-nav">
+  
+    <a href="/2016/10/07/各大浏览器 CSS3 和 HTML5 兼容速查表/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          各大浏览器 CSS3 和 HTML5 兼容速查表
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/22/页面预加载loading动画，再载入内容/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">页面预加载loading动画，再载入内容</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+    <style>
+        .toc {
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+            $(".toc li a").mouseover(function() {
+                var title = $(this).attr('href');
+                $(this).attr("title", title);
+            });
+        })
+    </script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <!--PC版-->
+<!--<div id="SOHUCS"></div>
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cytayTXt6',
+conf: 'prod_f098476580050875f23405f8b1a1825e'
+});
+</script>-->
+
+ <!-- 	PC和WAP自适应版
+ 		微信登录版	 -->
+<div id="SOHUCS" class="souhuCom"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cytayTXt6'; 
+var conf = 'prod_f098476580050875f23405f8b1a1825e'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+ <!-- 	PC和WAP自适应版
+ 		151手机版	 -->
+<!--div id="SOHUCS" class="souhuCom"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysW4S5aP'; 
+var conf = 'prod_87ceb709692fc0144865b09c877708b8'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+-->
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/10/07/各大浏览器 CSS3 和 HTML5 兼容速查表/" title="上一篇: 各大浏览器 CSS3 和 HTML5 兼容速查表">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/08/22/页面预加载loading动画，再载入内容/" title="下一篇: 页面预加载loading动画，再载入内容">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/前端静态资源版本更新与缓存之——通过gulp 在原html文件上自动化添加js、css版本号/">前端静态资源版本更新与缓存之——通过gulp 在原html文件上自动化添加js、css版本号</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/前端静态资源代码混淆——通过gulp 自动化混淆js、css或合并js、css/">前端静态资源代码混淆——通过gulp 自动化混淆js、css或合并js、css</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/SpringBoot+SpringMVC+MybatisPlus框架整合练习之【美女图片】爬虫---图文详细流程/">SpringBoot+SpringMVC+MybatisPlus框架整合练习之【美女图片】爬虫---图文详细流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/25/在HTML5中如何提高网站前端性能/">在HTML5中如何提高网站前端性能</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/即时通讯框架T-io之WebSocket协议再之HelloWorld/">即时通讯框架T-io之WebSocket协议再之HelloWorld</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/Java后端Tomcat实现WebSocket实例教程/">Java后端Tomcat实现WebSocket实例教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/JQuery学习总结/">JQuery学习总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/07/各大浏览器 CSS3 和 HTML5 兼容速查表/">各大浏览器 CSS3 和 HTML5 兼容速查表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/25/a标签中href属性动作和onclick事件的区别以及传递this参数对象/"><a>标签中href属性动作和onclick事件的区别以及传递this参数对象</a></a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/22/页面预加载loading动画，再载入内容/">页面预加载loading动画，再载入内容</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/02/java技术——邮件的发送/">java技术——邮件的发送</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/web前后台数据交互的几种方式/">web前后台数据交互的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/JS设置cookie、读取cookie、删除cookie/">JS设置cookie、读取cookie、删除cookie</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/20/jQuery.fn的作用是什么/">jQuery.fn的作用是什么</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/07/div里面的内容超出自身高度时，显示省略号/">div里面的内容超出自身高度时，显示省略号</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/07/JS-碰撞检测/">JS-碰撞检测</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/07/通过Ajax使用FormData对象无刷新上传文件/">通过Ajax使用FormData对象无刷新上传文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/07/jQuery.ajax() 函数详解/">jQuery.ajax() 函数详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/页面的缓存与不缓存设置/">页面的缓存与不缓存设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/25/玩转html5 的 canvas画图/">玩转html5 的 canvas画图</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/15/Javascript闭包/">Javascript闭包——懂不懂由你，反正我是懂了</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/25/免费个人博客搭建/">免费个人博客搭建教程（详细-图文）--Hexo+OSChina</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/07/HTMl5的sessionStorage和localStorage/">HTML5本地存储之Web Storage</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 Aaron
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank"></a><a href="http://bio.soos.xin" target="_blank"> Aaron </a>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">本站访客数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本文阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>jQuery.ajax() 函数详解 | Aaron&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="jQuery.ajax() 函数是jQuery封装的AJAX技术实现，通过该函数，我们无需刷新当前页面即可获取远程服务器上的数据。">
+<meta name="keywords" content="jQuery,ajax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery.ajax() 函数详解">
+<meta property="og:url" content="http://soos.xin/2015/09/07/jQuery.ajax() 函数详解/index.html">
+<meta property="og:site_name" content="Aaron&#39;s Blog">
+<meta property="og:description" content="jQuery.ajax() 函数是jQuery封装的AJAX技术实现，通过该函数，我们无需刷新当前页面即可获取远程服务器上的数据。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-09-22T03:41:35.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery.ajax() 函数详解">
+<meta name="twitter:description" content="jQuery.ajax() 函数是jQuery封装的AJAX技术实现，通过该函数，我们无需刷新当前页面即可获取远程服务器上的数据。">
+  
+    <link rel="alternative" href="/atom.xml" title="Aaron&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">Aaron</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">每一秒 我们都有机会 让下一秒 变得更好</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/about">留言打卡</a></li>
+                        
+                            <li><a href="/FrontEndGuide">前端导航</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=kaOooaeopqSh0eDgv-L_-A" title="mail">mail</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="http://zhihu.com/people/hanbinsvip" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://weibo.com/aaronindex" title="weibo">weibo</a>
+                            
+                                <a class="fl QQ" target="_blank" href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=29069750&website=www.soos.xin" title="QQ">QQ</a>
+                            
+                                <a class="fl wechat" target="_blank" href="https://zhuanlan.zhihu.com/p/29545000" title="wechat">wechat</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JQuery/" style="font-size: 10px;">JQuery</a> <a href="/tags/JS/" style="font-size: 10px;">JS</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/WebSocket/" style="font-size: 12.5px;">WebSocket</a> <a href="/tags/WebStorage/" style="font-size: 10px;">WebStorage</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/css3/" style="font-size: 10px;">css3</a> <a href="/tags/gulp/" style="font-size: 12.5px;">gulp</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/html5/" style="font-size: 12.5px;">html5</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/js、css混淆/" style="font-size: 10px;">js、css混淆</a> <a href="/tags/js、css版本号/" style="font-size: 10px;">js、css版本号</a> <a href="/tags/nodejs/" style="font-size: 12.5px;">nodejs</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/web前端/" style="font-size: 12.5px;">web前端</a> <a href="/tags/兼容性/" style="font-size: 10px;">兼容性</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/建站/" style="font-size: 10px;">建站</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://bio.soos.xin/">我的简历</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">热衷于新技术的学习和研究；秉承化繁为简理念，对互联网发展趋势高度关注，积极配合团队开发。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">Aaron</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">Aaron</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">每一秒 我们都有机会 让下一秒 变得更好</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/about">留言打卡</a></li>
+                
+                    <li><a href="/FrontEndGuide">前端导航</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=kaOooaeopqSh0eDgv-L_-A" title="mail">mail</a>
+                    
+                        <a class="zhihu" target="_blank" href="http://zhihu.com/people/hanbinsvip" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/aaronindex" title="weibo">weibo</a>
+                    
+                        <a class="QQ" target="_blank" href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=29069750&website=www.soos.xin" title="QQ">QQ</a>
+                    
+                        <a class="wechat" target="_blank" href="https://zhuanlan.zhihu.com/p/29545000" title="wechat">wechat</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-jQuery.ajax() 函数详解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/09/07/jQuery.ajax() 函数详解/" class="article-date">
+      <time datetime="2015-09-07T09:29:00.000Z" itemprop="datePublished">2015-09-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jQuery.ajax() 函数详解
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/web前端/">web前端</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><code>jQuery.ajax()</code>函数用于<strong>通过后台HTTP请求加载远程数据。</strong><br><code>jQuery.ajax()</code>函数是jQuery封装的<a href="http://zh.wikipedia.org/zh-cn/AJAX" target="_blank" rel="external">AJAX技术</a>实现，通过该函数，我们无需刷新当前页面即可获取远程服务器上的数据。<br><code>jQuery.ajax()</code>)函数是jQuery的底层AJAX实现。<a href="http://www.365mini.com/page/jquery_get.htm" target="_blank" rel="external">jQuery.get()</a>、 <a href="http://www.365mini.com/page/jquery_post.htm" target="_blank" rel="external">jQuery.post()</a>、 <a href="http://www.365mini.com/page/jquery-ajax-load.htm" target="_blank" rel="external">load()</a>、 <a href="http://www.365mini.com/page/jquery_getjson.htm" target="_blank" rel="external">jQuery.getJSON()</a>、<a href="http://www.365mini.com/page/jquery_getscript.htm" target="_blank" rel="external">jQuery.getScript()</a>等函数都是该函数的简化形式(都调用该函数，只是参数设置有所不同或有所省略)。<br>该函数属于全局<code>jQuery</code>对象(也可理解为静态函数)。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>jQuery <strong>1.0</strong> 新增该静态函数。<code>jQuery.ajax()</code>函数有以下两种用法：</p>
+<h3 id="用法一："><a href="#用法一：" class="headerlink" title="用法一："></a>用法一：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jQuery.ajax( [ settings ] )</div></pre></td></tr></table></figure>
+<h3 id="用法二：jQuery-1-5-新增支持该用法。"><a href="#用法二：jQuery-1-5-新增支持该用法。" class="headerlink" title="用法二：jQuery 1.5 新增支持该用法。"></a>用法二：jQuery <strong>1.5</strong> 新增支持该用法。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jQuery.ajax( url, [ settings ] )</div></pre></td></tr></table></figure>
+<p>用法二是用法一的变体，它只是将参数对象<code>settings</code>中的可选属性<code>url</code>单独提取出来作为一个独立的参数。</p>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p>请根据前面语法部分所定义的参数名称查找对应的参数。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td><code>String类型</code>URL请求字符串。</td>
+</tr>
+<tr>
+<td>settings</td>
+<td><code>可选/Object类型</code>一个Object对象，其中的每个属性用来指定发送请求所需的额外参数设置。</td>
+</tr>
+</tbody>
+</table>
+<p>参数<code>settings</code>是一个对象，<code>jQuery.ajax()</code>可以识别该对象的以下属性(它们都是<strong>可选</strong>的)：</p>
+<h3 id="accepts"><a href="#accepts" class="headerlink" title="accepts"></a><strong>accepts</strong></h3><p>数据类型：Object类型<br>默认值：取决于<code>dataType</code>属性。<br>发送的内容类型请求头，用于告诉服务器——浏览器可以接收服务器返回何种类型的响应。</p>
+<h3 id="async"><a href="#async" class="headerlink" title="async"></a>async</h3><p>数据类型：Boolean类型<br>默认值：<code>true</code>。<br>指示是否是异步请求。同步请求将锁定浏览器，直到获取到远程数据后才能执行其他操作。</p>
+<h3 id="beforeSend"><a href="#beforeSend" class="headerlink" title="beforeSend"></a>beforeSend</h3><p>数据类型：Function类型<br>指定在请求发送前需要执行的回调函数。该函数还有两个参数：其一是<code>jqXHR</code>对象，其二是当前<code>settings</code>对象。这是一个Ajax事件，如果该函数返回<code>false</code>，将取消本次ajax请求。</p>
+<h3 id="cache"><a href="#cache" class="headerlink" title="cache"></a>cache</h3><p>数据类型： Boolean类型<br>默认值：<code>true</code>(<code>dataType</code>为’script’或’jsonp’时，则默认为<code>false</code>)。<br>指示是否缓存URL请求。如果设为<code>false</code>将强制浏览器不缓存当前URL请求。该参数只对HEAD、GET请求有效(POST请求本身就不会缓存)。</p>
+<h3 id="complete"><a href="#complete" class="headerlink" title="complete"></a>complete</h3><p>数据类型： Function/Array类型<br>指定请求完成(无论成功或失败)后需要执行的回调函数。该函数还有两个参数：一个是<code>jqXHR</code>对象，一个是表示请求状态的字符串(‘success’、 ‘notmodified’、 ‘error’、 ‘timeout’、 ‘abort’或’parsererror’)。这是一个Ajax事件。<br>从jQuery 1.5开始，该属性值可以是数组形式的多个函数，每个函数都将被回调执行。</p>
+<h3 id="contents-（1-5-新增）"><a href="#contents-（1-5-新增）" class="headerlink" title="contents （1.5 新增）"></a>contents （1.5 新增）</h3><p>数据类型： Object类型<br>一个以”{字符串:正则表达式}”配对的对象，用来确定jQuery将如何解析响应，给定其内容类型。</p>
+<h3 id="content"><a href="#content" class="headerlink" title="content"></a>content</h3><p>数据类型：TypeString类型<br>默认值：’application/x-www-form-urlencoded; charset=UTF-8’。<br>使用指定的内容编码类型将数据发送给服务器。W3C的XMLHttpRequest规范规定charset始终是UTF-8，你如果将其改为其他字符集，也无法强制浏览器更改字符编码。</p>
+<h3 id="context"><a href="#context" class="headerlink" title="context"></a>context</h3><p>数据类型：Object类型<br>用于设置Ajax相关回调函数的上下文对象(也就是函数内的this指针)。</p>
+<h3 id="converters（1-5-新增）"><a href="#converters（1-5-新增）" class="headerlink" title="converters（1.5 新增）"></a>converters（1.5 新增）</h3><p>数据类型：Object类型<br>默认值：<code>{&#39;* text&#39;: window.String, &#39;text html&#39;: true, &#39;text json&#39;: jQuery.parseJSON, &#39;text xml&#39;: jQuery.parseXML}</code>。<br>一个数据类型转换器。每个转换器的值都是一个函数，用于返回响应转化后的值。</p>
+<h3 id="crossDomain（1-5-新增）"><a href="#crossDomain（1-5-新增）" class="headerlink" title="crossDomain（1.5 新增）"></a>crossDomain（1.5 新增）</h3><p>数据类型：Boolean类型<br>默认值：同域请求为false，跨域请求为true。<br>指示是否是跨域请求。如果你想在同一域中强制跨域请求(如JSONP形式)，请设置为true。例如，这允许服务器端重定向到另一个域。</p>
+<h3 id="data"><a href="#data" class="headerlink" title="data"></a>data</h3><p>数据类型：任意类型<br>发送到服务器的数据，它将被自动转为字符串类型。如果是GET请求，它将被附加到URL后面。</p>
+<h3 id="dataFilter"><a href="#dataFilter" class="headerlink" title="dataFilter"></a>dataFilter</h3><p>数据类型：Function类型<br>指定处理响应的原始数据的回调函数。该函数还有两个参数：其一表示响应的原始数据的字符串，其二是dataType属性字符串。</p>
+<h3 id="dataType"><a href="#dataType" class="headerlink" title="dataType"></a>dataType</h3><p>数据类型：String类型<br>默认值：jQuery智能猜测，猜测范围(xml、 json、 script或html)<br>指定返回的数据类型。该属性值可以为：</p>
+<ul>
+<li>‘xml’ :返回XML文档，可使用jQuery进行处理。</li>
+<li>‘html’: 返回HTML字符串。</li>
+<li>‘script’: 返回JavaScript代码。不会自动缓存结果。除非设置了cache参数。注意：在远程请求时(不在同一个域下)，所有POST请求都将转为GET请求。(因为将使用DOM的script标签来加载)</li>
+<li>‘json’: 返回JSON数据。JSON数据将使用严格的语法进行解析(属性名必须加双引号，所有字符串也必须用双引号)，如果解析失败将抛出一个错误。从jQuery 1.9开始，空内容的响应将返回null或{}。</li>
+<li>‘jsonp’: JSONP格式。使用JSONP形式调用函数时，如”url?callback=?”，jQuery将自动替换第二个?为正确的函数名，以执行回调函数。</li>
+<li>‘text’: 返回纯文本字符串。</li>
+</ul>
+<h3 id="error"><a href="#error" class="headerlink" title="error"></a>error</h3><p>数据类型：Function/Array类型<br>指定请求失败时执行的回调函数。该函数有3个参数：jqXHR对象、 请求状态字符串(null、 ‘timeout’、 ‘error’、 ‘abort’和’parsererror’)、 错误信息字符串(响应状态的文本描述部分，例如’Not Found’或’Internal Server Error’)。这是一个Ajax事件。跨域脚本和跨域JSONP请求不会调用该函数。<br>从jQuery 1.5开始，该属性值可以是数组形式的多个函数，每个函数都将被回调执行。</p>
+<h3 id="global"><a href="#global" class="headerlink" title="global"></a>global</h3><p>数据类型：Boolean类型<br>默认值：<code>true</code>。</p>
+<p>指示是否触发全局Ajax事件。将该值设为<code>false</code>将阻止全局事件处理函数被触发，例如ajaxStart()和ajaxStop()。它可以用来控制各种Ajax事件。</p>
+<h3 id="headers（1-5-新增）"><a href="#headers（1-5-新增）" class="headerlink" title="headers（1.5 新增）"></a>headers（1.5 新增）</h3><p>数据类型：Object类型<br>默认值：{}。</p>
+<p>以对象形式指定附加的请求头信息。请求头<code>X-Requested-With: XMLHttpRequest</code>将始终被添加，当然你也可以在此处修改默认的XMLHttpRequest值。<code>headers</code>中的值可以覆盖beforeSend回调函数中设置的请求头(意即<code>beforeSend</code>先被调用)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">    url: &quot;my.php&quot; ,</div><div class="line">    headers: &#123;</div><div class="line">        &quot;Referer&quot;: &quot;http://www.365mini.com&quot; // 有些浏览器不允许修改该请求头</div><div class="line">        ,&quot;User-Agent&quot;: &quot;newLine&quot; // 有些浏览器不允许修改该请求头</div><div class="line">        ,&quot;X-Power&quot;: &quot;newLine&quot;</div><div class="line">        ,&quot;Accept-Language&quot;: &quot;en-US&quot;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="ifModified"><a href="#ifModified" class="headerlink" title="ifModified"></a>ifModified</h3><p>数据类型：Boolean类型<br>默认值：<code>false</code>。</p>
+<p>允许当前请求仅在服务器数据改变时获取新数据(如未更改，浏览器从缓存中获取数据)。它使用HTTP头信息Last-Modified来判断。从jQuery 1.4开始，他也会检查服务器指定的’etag’来确定数据是否已被修改。</p>
+<h3 id="isLocal（1-5-1-新增）"><a href="#isLocal（1-5-1-新增）" class="headerlink" title="isLocal（1.5.1 新增）"></a>isLocal（1.5.1 新增）</h3><p>数据类型Boolean类型<br>默认值：取决于当前的位置协议。</p>
+<p>允许将当前环境视作”本地”，(例如文件系统)，即使默认情况下jQuery不会如此识别它。目前，以下协议将被视作本地：<code>file</code>、<code>*-extension</code>和<code>widget</code>。</p>
+<h3 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a>jsonp</h3><p>数据类型：String类型<br>重写JSONP请求的回调函数名称。该值用于替代”url?callback=?”中的”callback”部分。</p>
+<h3 id="jsonpCallback"><a href="#jsonpCallback" class="headerlink" title="jsonpCallback"></a>jsonpCallback</h3><p>数据类型：String/Function类型<br>为JSONP请求指定一个回调函数名。这个值将用来取代jQuery自动生成的随机函数名。</p>
+<p>从jQuery 1.5开始，你也可以指定一个函数来返回所需的函数名称。</p>
+<h3 id="mimeType（1-5-1-新增）"><a href="#mimeType（1-5-1-新增）" class="headerlink" title="mimeType（1.5.1 新增）"></a>mimeType（1.5.1 新增）</h3><p>数据类型：String类型<br>一个mime类型用来覆盖XHR的mime类型。</p>
+<h3 id="password"><a href="#password" class="headerlink" title="password"></a>password</h3><p>数据类型：String类型<br>用于响应HTTP访问认证请求的密码。</p>
+<h3 id="processData"><a href="#processData" class="headerlink" title="processData"></a>processData</h3><p>数据类型：Boolean类型<br>默认值：<code>true</code>。</p>
+<p>默认情况下，通过<code>data</code>属性传递进来的数据，如果是一个对象(技术上讲，只要不是字符串)，都会处理转化成一个查询字符串，以配合默认内容类型 “application/x-www-form-urlencoded”。如果要发送 DOM树信息或其它不希望转换的信息，请设置为<code>false</code>。</p>
+<h3 id="scriptCharset"><a href="#scriptCharset" class="headerlink" title="scriptCharset"></a>scriptCharset</h3><p>数据类型：String类型<br>设置该请求加载的脚本文件的字符集。只有当请求时dataType为”jsonp”或”script”，并且type是”GET”才会用于强制修改charset。这相当于设置<code>&lt;script&gt;</code>标签的charset属性。通常只在当前页面和远程数据的内容编码不同时使用。</p>
+<h3 id="statusCode（1-5-新增）"><a href="#statusCode（1-5-新增）" class="headerlink" title="statusCode（1.5 新增）"></a>statusCode（1.5 新增）</h3><p>数据类型：Object类型<br>默认值: {}。</p>
+<p>一组数值的HTTP代码和函数构成的对象，当响应时调用了相应的代码。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">    url: a_not_found_url ,</div><div class="line">    // 当响应对应的状态码时，执行对应的回调函数</div><div class="line">    statusCode: &#123;</div><div class="line">        404: function() &#123;</div><div class="line">            alert( &quot;找不到页面&quot; );</div><div class="line">        &#125;,</div><div class="line">        200: function()&#123;</div><div class="line">            alert(&quot;请求成功&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="success"><a href="#success" class="headerlink" title="success"></a>success</h3><p>数据类型：Function/Array类型<br>指定请求成功后执行的回调函数。该函数有3个参数：请求返回的数据、响应状态字符串、<code>jqXHR</code>对象。<br>从jQuery 1.5开始，该属性值可以是数组形式的多个函数，每个函数都将被回调执行。</p>
+<h3 id="timeout"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</h3><p>数据类型：Number类型<br>设置请求超时的毫秒值。</p>
+<h3 id="traditional"><a href="#traditional" class="headerlink" title="traditional"></a>traditional</h3><p>数据类型：Boolean类型<br>如果你希望使用传统方式来序列化参数，将该属性设为<code>true</code>。</p>
+<h3 id="type"><a href="#type" class="headerlink" title="type"></a>type</h3><p>数据类型：String类型<br>默认值：”GET”。</p>
+<p>请求类型，可以为’POST’或’GET’。注意：你也可以在此处使用诸如’PUT’、’DELETE’等其他请求类型，但它们不被所有浏览器支持。</p>
+<p>###url<br>数据类型：String类型<br>默认值：当前页面URL。</p>
+<p>请求的目标URL。</p>
+<h3 id="username"><a href="#username" class="headerlink" title="username"></a>username</h3><p>数据类型：String类型<br>用于响应HTTP访问认证请求的用户名。</p>
+<h3 id="xhr"><a href="#xhr" class="headerlink" title="xhr"></a>xhr</h3><p>数据类型：Function类型<br>默认值：在IE下是<code>ActiveXObject</code>(如果可用)，在其他浏览器中是<code>XMLHttpRequest</code>。</p>
+<p>一个用于创建并返回XMLHttpRequest对象的回调函数。你可以重写该属性以提供自己的XHR实现，或增强其功能。</p>
+<h3 id="xhrFields（1-5-1-新增）"><a href="#xhrFields（1-5-1-新增）" class="headerlink" title="xhrFields（1.5.1 新增）"></a>xhrFields（1.5.1 新增）</h3><p>数据类型：Object类型<br>一个具有多个”字段名称-字段值”对的对象，用于对本地XHR对象进行设置。一对「文件名-文件值」在本机设置XHR对象。例如，如果需要，你可以用它来为跨域请求设置XHR对象的<code>withCredentials</code>属性为<code>true</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">   url: a_cross_domain_url,</div><div class="line">   // 将XHR对象的withCredentials设为true</div><div class="line">   xhrFields: &#123;</div><div class="line">      withCredentials: true</div><div class="line">   &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>注意：<br>1、如果你的所有AJAX请求都需要设置<code>settings</code>中某些参数，你可以使用jQuery.ajaxSetup()函数进行全局设置，而无需在每次执行<code>jQuery.ajax()</code>时分别设置。<br>2、在jQuery 1.4(含)之前，选项参数<code>complete</code>、<code>succes</code>、<code>error</code>等Ajax事件的回调函数的第3个参数不是经过jQuery封装的jqXHR对象，而是原生的XMLHttpRequest对象。</p>
+<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p><code>jQuery.ajax()</code>函数的返回值为<code>jqXHR类型</code>，返回当前该请求的jqXHR对象(jQuery 1.4及以前版本返回的是原生的XMLHttpRequest对象)。</p>
+<h2 id="示例-amp-说明"><a href="#示例-amp-说明" class="headerlink" title="示例&amp;说明"></a>示例&amp;说明</h2><p>如果没有给<code>jQuery.ajax()</code>指定任何参数，则默认请求当前页面，并且不对返回数据进行处理。</p>
+<p><code>jQuery.ajax()</code>函数的<code>settings</code>对象中，常用的属性有：url、type、async、data、dataType、success、error、complete、beforeSend、timeout等。</p>
+<p>请参考下面这段初始HTML代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;content&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>以下是与jQuery.ajax()函数相关的jQuery示例代码，以演示jQuery.ajax()函数的具体用法：</p>
+<p><a href="http://www.365mini.com/diy.php?f=jquery_ajax-demo" target="_blank" rel="external">运行代码</a>(演示页面只有第一个ajax()函数，其他代码请自行复制到演示页面分别执行)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">     url: &quot;jquery_ajax.php&quot;</div><div class="line">    , type: &quot;POST&quot;</div><div class="line">    , data: &quot;name=codeplayer&amp;age=18&quot;</div><div class="line">    , success: function( data, textStatus, jqXHR )&#123;</div><div class="line">        // data 是返回的数据</div><div class="line">        // textStatus 可能为&quot;success&quot;、&quot;notmodified&quot;等</div><div class="line">        // jqXHR 是经过jQuery封装的XMLHttpRequest对象</div><div class="line">        alert(&quot;返回的数据&quot; + data);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line">$.ajax(&#123;</div><div class="line">     url: &quot;jquery_ajax.php?page=1&amp;id=3&quot;</div><div class="line">    , type: &quot;POST&quot;</div><div class="line">    // jQuery会自动将对象数据转换为 &quot;name=codeplayer&amp;age=18&amp;uid=1&amp;uid=2&amp;uid=3&quot;</div><div class="line">    , data: &#123; name:&quot;codeplayer&quot;, age:18, uid: [1, 2, 3] &#125;</div><div class="line">    // 请求成功时执行</div><div class="line">    , success: function( data, textStatus, jqXHR )&#123;</div><div class="line">        alert(&quot;返回的数据&quot; + data);</div><div class="line">    &#125;</div><div class="line">    // 请求失败时执行</div><div class="line">    , error: function(jqXHR, textStatus, errorMsg)&#123;</div><div class="line">        // jqXHR 是经过jQuery封装的XMLHttpRequest对象</div><div class="line">        // textStatus 可能为： null、&quot;timeout&quot;、&quot;error&quot;、&quot;abort&quot;或&quot;parsererror&quot;</div><div class="line">        // errorMsg 可能为： &quot;Not Found&quot;、&quot;Internal Server Error&quot;等</div><div class="line">        alert(&quot;请求失败：&quot; + errorMsg);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line">// 将url单独提取出来作为第一个参数(jQuery 1.5+才支持)</div><div class="line">$.ajax(&quot;jquery_ajax.php?action=type&amp;id=3&quot;, &#123;</div><div class="line">     dataType: &quot;json&quot; // 返回JSON格式的数据</div><div class="line">    , success: function( data, textStatus, jqXHR )&#123;</div><div class="line">        // 假设返回的字符串数据为&#123; &quot;name&quot;: &quot;CodePlayer&quot;, age: 20 &#125;</div><div class="line">        // jQuery已帮我们将该JSON字符串转换为对应的JS对象，可以直接使用</div><div class="line">        alert( data.name ); // CodePlayer</div><div class="line">    &#125;   </div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line">$.ajax( &#123;</div><div class="line">    // 注意这里有个参数callback=?</div><div class="line">     url: &quot;http://cross-domain/jquery_ajax.php?name=Jim&amp;callback=?&amp;age=21&quot;</div><div class="line">    , async: false // 同步请求，发送请求后浏览器将被锁定，只有等到该请求完成(无论成功或失败)后，用户才能操作，js代码才会继续执行</div><div class="line">    , dataType: &quot;jsonp&quot; // 返回JSON格式的数据</div><div class="line">    , success: function( data, textStatus, jqXHR )&#123;</div><div class="line">        // 假设返回的字符串数据为&#123; &quot;site_name&quot;: &quot;CodePlayer&quot;, &quot;site_desc&quot;: &quot;专注于编程开发技术分享&quot; &#125;</div><div class="line">        // jQuery已帮我们将该JSON字符串转换为对应的JS对象，可以直接使用</div><div class="line">        alert( data.site_desc ); // 专注于编程开发技术分享</div><div class="line">    &#125;   </div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line">$.ajax( &#123;</div><div class="line">    // 加载指定的js文件到当前文档中</div><div class="line">     url: &quot;http://code.jquery.com/jquery-1.8.3.min.js&quot;</div><div class="line">    , dataType: &quot;script&quot;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>注：本文转载至<a href="http://www.365mini.com/page/jquery_ajax.htm" target="_blank" rel="external">CodePlayer</a>,如要转载请标明出处！</p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()" title="关闭">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫">
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝"></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信"></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+<nav id="article-nav">
+  
+    <a href="/2015/10/07/通过Ajax使用FormData对象无刷新上传文件/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          通过Ajax使用FormData对象无刷新上传文件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/07/20/页面的缓存与不缓存设置/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">页面的缓存与不缓存设置</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用法一："><span class="toc-number">1.1.</span> <span class="toc-text">用法一：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用法二：jQuery-1-5-新增支持该用法。"><span class="toc-number">1.2.</span> <span class="toc-text">用法二：jQuery 1.5 新增支持该用法。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数"><span class="toc-number">2.</span> <span class="toc-text">参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#accepts"><span class="toc-number">2.1.</span> <span class="toc-text">accepts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#async"><span class="toc-number">2.2.</span> <span class="toc-text">async</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#beforeSend"><span class="toc-number">2.3.</span> <span class="toc-text">beforeSend</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cache"><span class="toc-number">2.4.</span> <span class="toc-text">cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#complete"><span class="toc-number">2.5.</span> <span class="toc-text">complete</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#contents-（1-5-新增）"><span class="toc-number">2.6.</span> <span class="toc-text">contents （1.5 新增）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#content"><span class="toc-number">2.7.</span> <span class="toc-text">content</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#context"><span class="toc-number">2.8.</span> <span class="toc-text">context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#converters（1-5-新增）"><span class="toc-number">2.9.</span> <span class="toc-text">converters（1.5 新增）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#crossDomain（1-5-新增）"><span class="toc-number">2.10.</span> <span class="toc-text">crossDomain（1.5 新增）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data"><span class="toc-number">2.11.</span> <span class="toc-text">data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dataFilter"><span class="toc-number">2.12.</span> <span class="toc-text">dataFilter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dataType"><span class="toc-number">2.13.</span> <span class="toc-text">dataType</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#error"><span class="toc-number">2.14.</span> <span class="toc-text">error</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#global"><span class="toc-number">2.15.</span> <span class="toc-text">global</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#headers（1-5-新增）"><span class="toc-number">2.16.</span> <span class="toc-text">headers（1.5 新增）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ifModified"><span class="toc-number">2.17.</span> <span class="toc-text">ifModified</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isLocal（1-5-1-新增）"><span class="toc-number">2.18.</span> <span class="toc-text">isLocal（1.5.1 新增）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jsonp"><span class="toc-number">2.19.</span> <span class="toc-text">jsonp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jsonpCallback"><span class="toc-number">2.20.</span> <span class="toc-text">jsonpCallback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mimeType（1-5-1-新增）"><span class="toc-number">2.21.</span> <span class="toc-text">mimeType（1.5.1 新增）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#password"><span class="toc-number">2.22.</span> <span class="toc-text">password</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#processData"><span class="toc-number">2.23.</span> <span class="toc-text">processData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scriptCharset"><span class="toc-number">2.24.</span> <span class="toc-text">scriptCharset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#statusCode（1-5-新增）"><span class="toc-number">2.25.</span> <span class="toc-text">statusCode（1.5 新增）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#success"><span class="toc-number">2.26.</span> <span class="toc-text">success</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#timeout"><span class="toc-number">2.27.</span> <span class="toc-text">timeout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#traditional"><span class="toc-number">2.28.</span> <span class="toc-text">traditional</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#type"><span class="toc-number">2.29.</span> <span class="toc-text">type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#username"><span class="toc-number">2.30.</span> <span class="toc-text">username</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xhr"><span class="toc-number">2.31.</span> <span class="toc-text">xhr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xhrFields（1-5-1-新增）"><span class="toc-number">2.32.</span> <span class="toc-text">xhrFields（1.5.1 新增）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回值"><span class="toc-number">3.</span> <span class="toc-text">返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例-amp-说明"><span class="toc-number">4.</span> <span class="toc-text">示例&amp;说明</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+    <style>
+        .toc {
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+            $(".toc li a").mouseover(function() {
+                var title = $(this).attr('href');
+                $(this).attr("title", title);
+            });
+        })
+    </script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <!--PC版-->
+<!--<div id="SOHUCS"></div>
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cytayTXt6',
+conf: 'prod_f098476580050875f23405f8b1a1825e'
+});
+</script>-->
+
+ <!-- 	PC和WAP自适应版
+ 		微信登录版	 -->
+<div id="SOHUCS" class="souhuCom"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cytayTXt6'; 
+var conf = 'prod_f098476580050875f23405f8b1a1825e'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+ <!-- 	PC和WAP自适应版
+ 		151手机版	 -->
+<!--div id="SOHUCS" class="souhuCom"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysW4S5aP'; 
+var conf = 'prod_87ceb709692fc0144865b09c877708b8'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+-->
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/10/07/通过Ajax使用FormData对象无刷新上传文件/" title="上一篇: 通过Ajax使用FormData对象无刷新上传文件">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2015/07/20/页面的缓存与不缓存设置/" title="下一篇: 页面的缓存与不缓存设置">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/前端静态资源版本更新与缓存之——通过gulp 在原html文件上自动化添加js、css版本号/">前端静态资源版本更新与缓存之——通过gulp 在原html文件上自动化添加js、css版本号</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/前端静态资源代码混淆——通过gulp 自动化混淆js、css或合并js、css/">前端静态资源代码混淆——通过gulp 自动化混淆js、css或合并js、css</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/SpringBoot+SpringMVC+MybatisPlus框架整合练习之【美女图片】爬虫---图文详细流程/">SpringBoot+SpringMVC+MybatisPlus框架整合练习之【美女图片】爬虫---图文详细流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/25/在HTML5中如何提高网站前端性能/">在HTML5中如何提高网站前端性能</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/即时通讯框架T-io之WebSocket协议再之HelloWorld/">即时通讯框架T-io之WebSocket协议再之HelloWorld</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/Java后端Tomcat实现WebSocket实例教程/">Java后端Tomcat实现WebSocket实例教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/JQuery学习总结/">JQuery学习总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/07/各大浏览器 CSS3 和 HTML5 兼容速查表/">各大浏览器 CSS3 和 HTML5 兼容速查表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/25/a标签中href属性动作和onclick事件的区别以及传递this参数对象/"><a>标签中href属性动作和onclick事件的区别以及传递this参数对象</a></a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/22/页面预加载loading动画，再载入内容/">页面预加载loading动画，再载入内容</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/02/java技术——邮件的发送/">java技术——邮件的发送</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/web前后台数据交互的几种方式/">web前后台数据交互的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/JS设置cookie、读取cookie、删除cookie/">JS设置cookie、读取cookie、删除cookie</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/20/jQuery.fn的作用是什么/">jQuery.fn的作用是什么</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/07/div里面的内容超出自身高度时，显示省略号/">div里面的内容超出自身高度时，显示省略号</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/07/JS-碰撞检测/">JS-碰撞检测</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/07/通过Ajax使用FormData对象无刷新上传文件/">通过Ajax使用FormData对象无刷新上传文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/07/jQuery.ajax() 函数详解/">jQuery.ajax() 函数详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/页面的缓存与不缓存设置/">页面的缓存与不缓存设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/25/玩转html5 的 canvas画图/">玩转html5 的 canvas画图</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/15/Javascript闭包/">Javascript闭包——懂不懂由你，反正我是懂了</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/25/免费个人博客搭建/">免费个人博客搭建教程（详细-图文）--Hexo+OSChina</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/07/HTMl5的sessionStorage和localStorage/">HTML5本地存储之Web Storage</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 Aaron
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank"></a><a href="http://bio.soos.xin" target="_blank"> Aaron </a>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">本站访客数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本文阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>
