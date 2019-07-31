@@ -4323,6 +4323,9 @@ pre .link_url {
     padding: 10px !important;
   }
 }
+#pop_ad {
+  display: none;
+}
 .inner1 {
   margin: 0 40px;
 }
