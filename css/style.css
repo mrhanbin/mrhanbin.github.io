@@ -4290,7 +4290,6 @@ pre .link_url {
   }
 }
 #SOHUCS.souhuCom {
-  display: none;
   padding: 30px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -4324,10 +4323,10 @@ pre .link_url {
     padding: 10px !important;
   }
 }
-#SOHUCS .feedAv {
+#SOHUCS.souhuCom>#SOHU_MAIN #feedAv {
   display: none;
 }
-#SOHUCS #pop_ad {
+#SOHUCS.souhuCom #pop_ad {
   display: none;
 }
 .inner1 {
